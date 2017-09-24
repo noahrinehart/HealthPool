@@ -1,0 +1,1 @@
+../../qtum/shell_functions/registerProvider.sh

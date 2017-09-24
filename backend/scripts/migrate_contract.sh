@@ -1,0 +1,1 @@
+../../qtum/shell_functions/migrate_contract.sh

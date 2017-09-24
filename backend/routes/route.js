@@ -40,7 +40,16 @@ exports.setupRoutes = (app) => {
   betterRoutes.get('/specialties', checkAuth, BetterController.getSpecialties);
 
   // /api/qtum routes
-  // qtumRoutes.
+  // /api/qtum/provider
+  qtumRoutes.get('/provider/name', QtumController.getProviderName);
+  qtumRoutes.get('/provider/total', QtumController.getProviderTotalServicesGiven);
+  qtumRoutes.get('/provider/rating', QtumController.getProviderQualityRating);
+
+  // /api/qtum/patient
+  qtumRoutes.get('/patient/name', QtumController.getPatientName);
+  qtumRoutes.get('/patient/history', QtumController.getPatientMedicalHistory);
+  qtumRoutes.get('/patient/status', QtumController.getPatientStatus);
+
 
   app.use('/api', apiRoutes);
 }

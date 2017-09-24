@@ -5,6 +5,8 @@
 nodejs
 npm
 mongodb
+qtum-cli/d # in path
+jq # in path
 ```
 
 #### To Run:

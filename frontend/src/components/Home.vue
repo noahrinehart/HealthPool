@@ -1,26 +1,17 @@
 <template>
-  <!-- <div class="col-sm-6 col-sm-offset-3">
-    <h1>Test</h1>
-    <button class="btn btn-primary">Test</button>
-  </div> -->
-  <div>
-    <p v-if="greeting">Hello!</p>
+  <div class="col-sm-6 col-sm-offset-3">
+    <h1>Health Pool is still in development!</h1>
   </div>
-
 </template>
 
 <script>
 import auth from '../auth'
 
 export default {
-  // route: {
-  //   beforeEnter() {
-  //     return auth.user.authenticated
-  //   }
-  // },
-
-  data: {
-    greeting: true
+  route: {
+    beforeEnter() {
+      return auth.user.authenticated
+    }
   }
 }
 </script>

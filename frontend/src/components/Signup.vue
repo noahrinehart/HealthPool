@@ -1,7 +1,7 @@
 <template>
   <div class="col-sm-4 col-sm-offset-4">
     <h2>Sign Up</h2>
-    <p>Sign up and join DHealth!</p>
+    <p>Sign up and join Health pooled!</p>
     <div class="alert alert-danger" v-if="error">
       <p>{{ error }}</p>
     </div>
