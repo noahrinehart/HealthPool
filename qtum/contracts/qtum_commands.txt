@@ -1,0 +1,37 @@
+RUN BEGIN RUNNING THE DAEMON
+qtumd -regtest -daemon
+
+GET INFO ABOUT THE CHAIN
+qtumcli -regtest getinfo
+
+GENERATE BLOCKS
+qtumcli -regtest generate [number of blocks]
+
+LIST INFORMATION ABOUT THE ACCOUNTS
+qtumcli -regtest listaccounts
+
+CREATE A CONTRACT
+qtumcli -regtest createcontract [bytecode]
+
+STORE THE CONTRACT ADDRESS IN A VARIABLE
+export CONTRACT=[address of contract]
+
+MINE A BLOCK
+qtumcli -regtest generate 10
+
+GET ACCOUNT INFO ON THE CONTRACT
+qtumcli -regtest getaccountinfo [contract address]
+
+SEND FUNCTION TO CONTRACT
+-IF THERE IS AN ADDRESS AS A PARAMETER IT MUST BE CONVERTED TO HEX
+qtumcli -regtest gethexaddress [qtum address]
+-FIRST GET ABI DATA
+ethabi encode function DHealthabi.json [function name] -p [paramaters] --lenient
+-NEXT SEND THE DATA TO THE CONTRACT
+qtumcli -regtest sendtocontract $CONTRACT [output from ethabi encode]
+
+GET FUNCTION FROM CONTRACT
+-FIRST ENCODE THE FUNCTION USING ETHABI
+ethabi encode function DHealthabi.json [function name]
+-NEXT CALL THE FUNCTION
+qtumcli -regtest callcontract $CONTRACT [output from ethabi]
