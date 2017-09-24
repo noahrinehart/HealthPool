@@ -16,10 +16,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
-if (process.env.NODE_ENV !== 'test')
-  app.use(logger('dev'));
-
-
 router.setupRoutes(app);
 
 const server = app.listen(config.port, () => {
