@@ -3,6 +3,7 @@ import App from './components/App.vue'
 import Home from './components/Home.vue'
 import Signup from './components/Signup.vue'
 import Login from './components/Login.vue'
+import Application from './components/Application.vue'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 Vue.use(VueResource)
@@ -24,6 +25,9 @@ router.map({
   },
   '/login': {
     component: Login
+  },
+  '/application': {
+    component: Application
   }
 })
 
