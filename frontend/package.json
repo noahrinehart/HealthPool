@@ -23,8 +23,10 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.5",
+    "vue": "^1.0.7",
+    "vue-autocomplete": "^0.0.2",
+    "vue-google-maps": "^0.1.21",
     "vue-resource": "^0.1.17",
-    "vue-router": "^0.7.5",
-    "vue": "^1.0.7"
+    "vue-router": "^0.7.5"
   }
 }
