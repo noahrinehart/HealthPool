@@ -1,30 +1,31 @@
-const express = require('express'),
-      UserController = require('../controllers/user'),
-      BetterController = require('../controllers/better'),
-      QtumController = require('../controllers/qtum');
+const AuthController = require('../controllers/auth'),
+      AccountController = require('../controllers/account'),
+      express = require('express'),
+      passportService = require('../config/passport'),
+      passport = require('passport');
+
+const checkAuth = passport.authenticate('jwt', { session: false });
+const checkLogin = passport.authenticate('local', { session: false });
 
 exports.setupRoutes = (app) => {
   const apiRoutes = express.Router(),
-        betterRoutes = express.Router(),
-        userRoutes = express.Router(),
-        qtumRoutes = express.Router();
+        accountRoutes = express.Router(),
+        authRoutes = express.Router();
 
   // /api routes
-  apiRoutes.use('/user', userRoutes);
-  apiRoutes.use('/better', betterRoutes);
-  apiRoutes.use('/qtum', qtumRoutes);
+  apiRoutes.use('/auth', authRoutes);
+  apiRoutes.use('/account', accountRoutes);
 
   // /api/account
-  userRoutes.get('/', UserController.getUser);
-  userRoutes.post('/', UserController.postUser);
+  accountRoutes.get('/', checkAuth, AccountController.getAccount);
+  accountRoutes.delete('/', checkAuth, AccountController.deleteAccount);
+  accountRoutes.post('/profile', checkAuth, AccountController.postUpdateProfile);
+  accountRoutes.post('/password', checkAuth, AccountController.postUpdatePassword);
+  accountRoutes.post('/address', checkAuth, AccountController.postAddAddress);
 
-  // /api/better
-  betterRoutes.get('/practices', BetterController.getPractices);
-  betterRoutes.get('/conditions', BetterController.getConditions);
-  betterRoutes.get('/specialties', BetterController.getSpecialties);
-
-  // /api/qtum
-  qtumRoutes.get('/', QtumController.test);
+  // /api/auth routes
+  authRoutes.post('/register', AuthController.postRegister);
+  authRoutes.post('/login', checkLogin, AuthController.postLogin);
 
   app.use('/api', apiRoutes);
 }

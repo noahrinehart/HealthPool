@@ -1,0 +1,17 @@
+# Logs
+logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Npm cache
+.npm
+
+# Dependencies
+/node_modules
+
+# Yarn Integrity File
+.yarn-integrity
+
+# dotenv env var file
+.env
