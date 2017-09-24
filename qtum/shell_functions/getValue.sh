@@ -8,10 +8,14 @@ export address=$2
 #echo $address
 
 bytecode=$(cat ./bytecode)
+echo $bytecode
 jsonabi=$(cat ./jsonabi)
+echo $jsonabi
 contract_address=$(cat ./contract_address)
+echo $contract_address
 
 eth_address=$($qtumcli gethexaddress $address)
+echo $eth_address
 
 encoded_call=$(ethabi encode function jsonabi $function_name -p $eth_address)
 
