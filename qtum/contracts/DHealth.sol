@@ -1,17 +1,32 @@
 pragma solidity ^0.4.2;
 
+import './HealthCoin.sol';
+
 contract DHealth{
 
+
   //#####ERC20 TOKEN#####
-  /*
-  uint256 pool = 500000;
-  uint256 totalSupply = 1000000;
 
-
-  function totalSupply() constant returns (uint256){
-    return totalSupply;
+  function sendCoin(address coinContractAddress, address receiver, uint amount){
+    HealthCoin h = HealthCoin(coinContractAddress);
+    h.transfer(receiver, amount);
   }
-  */
+
+  function checkBalance(address coinContractAddress, address account){
+    HealthCoin h = HealthCoin(coinContractAddress);
+    h.balanceOf(account);
+  }
+
+  //#####TRANSFER CLAIM#####
+  //#####ONLY CALLABLE BY PROVIDER#####
+  function transferClaim(address _patientAddress, address _providerAddress, uint256 _claim){
+    assert(providers[_providerAddress] = true);
+    _patientAddress.transfer(calculateClaim(patients[_patientAddress], _claim));
+  }
+
+  function calculateClaim(address _patient, uint256 _claim) constant returns (uint256){
+    return _claim * patients[_patient].payPerMonth * patients[_patient].timePaying * patients[_patient].claimMod;
+  }
 
   //#####PROVIDER INFORMATION#####
   uint256 totalProviders = 0;
@@ -26,8 +41,6 @@ contract DHealth{
     bool isRegistered;
   }
   
-
-
 
   //#####PROVIDER FUNCTIONS#####
 
@@ -69,10 +82,15 @@ contract DHealth{
     uint8 status;
 
     bool isRegistered;
+
+    uint256 payPerMonth;
+    uint256 timePaying;
+    uint256 claimMod;
+    uint256 totalPaid;
   }
 
   function registerPatient(address _patientAddress, string _patientName, string _medicalHistory){
-    patients[_patientAddress] = Patient({name: _patientName, medicalHistory: _medicalHistory, status: 0, isRegistered: true});
+    patients[_patientAddress] = Patient({name: _patientName, medicalHistory: _medicalHistory, status: 0, isRegistered: true, payPerMonth: 120, timePaying: 0});
     totalPatients ++;
   }
 
@@ -90,6 +108,11 @@ contract DHealth{
 
   function setPatientStatus(address _patientAddress, uint8 _status){
     patients[_patientAddress].status = _status;
+  }
+
+  function monthlyPay(address _patientAddress){
+    assert(msg.value == payPerMonth);
+    patients[_patientAddress].totalPaid += payPerMonth;
   }
 
   /*
