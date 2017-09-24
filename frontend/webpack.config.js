@@ -1,18 +1,17 @@
-var path = require('path')
-var webpack = require('webpack')
-
 
 module.exports = {
-  entry: './src/main.js',
+  // the main entry of our app
+  entry: ['./src/index.js', './src/auth/index.js'],
+  // output configuration
   output: {
-    path: path.resolve(__dirname, './dist'),
-    publicPath: '/dist/',
+    path: __dirname + '/build/',
+    publicPath: 'build/',
     filename: 'build.js'
   },
   module: {
     loaders: [
-      { test: /\.vue$/, loader: 'vue-loader', },
-      { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ }
+      { test: /\.vue$/, loader: 'vue' },
+      { test: /\.js$/, loader: 'babel', exclude: /node_modules/ }
     ]
   },
   babel: {
