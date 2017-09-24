@@ -3,18 +3,15 @@ pragma solidity ^0.4.2;
 contract DHealth{
 
   //#####ERC20 TOKEN#####
+  /*
   uint256 pool = 500000;
   uint256 totalSupply = 1000000;
-  mapping(address => uint256) public balances;
 
 
   function totalSupply() constant returns (uint256){
     return totalSupply;
   }
-
-  function balanceOf(address _owner) constant returns (uint256){
-    
-  }
+  */
 
   //#####PROVIDER INFORMATION#####
   uint256 totalProviders = 0;
@@ -28,6 +25,7 @@ contract DHealth{
     //Boolean of whether the the provider is registered
     bool isRegistered;
   }
+  
 
 
 
