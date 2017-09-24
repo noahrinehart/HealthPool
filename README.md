@@ -1,12 +1,14 @@
-# DistHealth17
+
+
+# HealthPool
 
 ## Architecture Overview
-### Backend
+### [Backend](https://github.com/noahrinehart/HealthPool/tree/master/backend)
 * NodeJS server that hosts an api
 * Connects to the frontend for authentification, better doctor requests, and qtum requests
-* Connects directls to qtum test-chain
+* Connects directls to [qtum](https://qtum.org/) test-chain
 
-### Frontend
+### [Frontend](https://github.com/noahrinehart/HealthPool/tree/master/frontend)
 * Based on VueJS 1.x (eventually upgrade to 2.x)
 * Displayed as a 1-screen app
 * Allows authentification with the backend
