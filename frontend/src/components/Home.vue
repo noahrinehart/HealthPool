@@ -10,7 +10,7 @@ import auth from '../auth'
 
 export default {
   route: {
-    canActivate() {
+    beforeEnter() {
       return auth.user.authenticated
     }
   }

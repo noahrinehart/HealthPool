@@ -37,7 +37,13 @@
         v-model="credentials.password"
       >
     </div>
-    <button class="btn btn-primary" @click="submit()">Sign Up</button>
+    <div class="radio">
+      <label><input type="radio" id="provider" value="Provider" v-model="credentials.type">Provider</label>
+    </div>
+    <div class="radio">
+      <label><input type="radio" id="patient" value="Patient" v-model="credentials.type">Patient</label>
+    </div>
+    <button class="btn btn-primary" type="submit" @click="submit()">Sign Up</button>
   </div>
 </template>
 
@@ -52,7 +58,8 @@ export default {
         firstName: '',
         lastName: '',
         email: '',
-        password: ''
+        password: '',
+        type: ''
       },
       error: ''
     }
@@ -66,7 +73,8 @@ export default {
         firstName: this.credentials.firstName,
         lastName: this.credentials.lastName,
         email: this.credentials.email,
-        password: this.credentials.password
+        password: this.credentials.password,
+        type: this.credentials.type
       }
 
       auth.signup(this, credentials, 'home')

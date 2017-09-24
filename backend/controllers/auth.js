@@ -17,6 +17,7 @@ exports.postRegister = (req, res, next) => {
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
   const password = req.body.password;
+  const type = req.body.type;
 
   if (!email) return res.status(422).json({
     sucess: false,
@@ -33,6 +34,10 @@ exports.postRegister = (req, res, next) => {
     error: 'No password supplied!'
   });
 
+  if (!type) return res.status(422).json({
+    success: false,
+    error: 'No type supplied!'
+  });
 
   User.findOne({ email: email }, (err, existingUser) => {
     if (err) return next(err);
@@ -46,6 +51,7 @@ exports.postRegister = (req, res, next) => {
       email: email,
       password: password,
       profile: { firstName: firstName, lastName: lastName },
+      type: type
     });
 
     user.save( (err, user) => {

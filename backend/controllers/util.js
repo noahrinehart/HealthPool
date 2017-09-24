@@ -13,6 +13,7 @@ exports.getUserInfo = (request) => {
     firstName: request.profile.firstName,
     lastName: request.profile.lastName,
     email: request.email,
+    type: request.type,
     address: request.address
   };
 }

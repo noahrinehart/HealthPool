@@ -7,28 +7,24 @@ import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 Vue.use(VueResource)
 Vue.use(VueRouter)
+
+
 import auth from './auth'
 
 Vue.http.headers.common['Authorization'] = 'JWT ' + localStorage.getItem('token');
 
 auth.checkAuth()
 
-export var router = new VueRouter()
-
-router.map({
-  '/home': {
-    component: Home
-  },
-  '/signup': {
-    component: Signup
-  },
-  '/login': {
-    component: Login
-  }
+export var router = new VueRouter({
+  routes: [
+    { path: '/home', component: Home },
+    { path: '/signup', component: Signup },
+    { path: '/login', component: Login },
+    { path: '*', redirect: '/login' }
+  ]
 })
 
-router.redirect({
-  '*': '/home'
-})
-
-router.start(App, '#app')
+new Vue({
+  el: '#app',
+  router: router,
+render: h => h(App)})
