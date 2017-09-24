@@ -1,7 +1,9 @@
 const AuthController = require('../controllers/auth'),
       AccountController = require('../controllers/account'),
-      express = require('express'),
+      BetterController = require('../controllers/better'),
+      QtumController = require('../controllers/qtum'),
       passportService = require('../config/passport'),
+      express = require('express'),
       passport = require('passport');
 
 const checkAuth = passport.authenticate('jwt', { session: false });
@@ -9,12 +11,17 @@ const checkLogin = passport.authenticate('local', { session: false });
 
 exports.setupRoutes = (app) => {
   const apiRoutes = express.Router(),
+        betterRoutes = express.Router(),
+        qtumRoutes = express.Router(),
         accountRoutes = express.Router(),
         authRoutes = express.Router();
+
 
   // /api routes
   apiRoutes.use('/auth', authRoutes);
   apiRoutes.use('/account', accountRoutes);
+  apiRoutes.use('/better', betterRoutes);
+  apiRoutes.use('/qtum', qtumRoutes);
 
   // /api/account
   accountRoutes.get('/', checkAuth, AccountController.getAccount);
@@ -26,6 +33,14 @@ exports.setupRoutes = (app) => {
   // /api/auth routes
   authRoutes.post('/register', AuthController.postRegister);
   authRoutes.post('/login', checkLogin, AuthController.postLogin);
+
+  // /api/better routes
+  betterRoutes.get('/practices', checkAuth, BetterController.getPractices);
+  betterRoutes.get('/conditions', checkAuth, BetterController.getConditions);
+  betterRoutes.get('/specialties', checkAuth, BetterController.getSpecialties);
+
+  // /api/qtum routes
+  // qtumRoutes.
 
   app.use('/api', apiRoutes);
 }

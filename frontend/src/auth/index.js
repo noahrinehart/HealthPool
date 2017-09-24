@@ -20,7 +20,7 @@ export default {
       }
 
     }).error( (err) => {
-      context.error = err
+      context.error = err.error
     })
   },
 
