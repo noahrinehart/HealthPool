@@ -6,7 +6,7 @@ bytecode=${bytecode_untrimmed:58}
 echo $bytecode > ./bytecode
 
 jsonabi_untrimmed=$(solc --optimize --abi ../contracts/DHealth.sol)
-jsonabi=${jsonabi_untrimmed:58}
+jsonabi=${jsonabi_untrimmed:67}
 echo $jsonabi > ./jsonabi
 
 create_contract_output=$($qtumcli createcontract $bytecode 1000000)
