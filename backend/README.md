@@ -12,7 +12,7 @@ jq # in path
 #### To Run:
 ```bash
 # Clone repo
-git clone https://github.com/noahrinehart/DistHealth17.git
+git clone git@github.com:noahrinehart/HealthPool.git
 cd DistHealth17/backend
 # Install dependencies
 npm install --save
